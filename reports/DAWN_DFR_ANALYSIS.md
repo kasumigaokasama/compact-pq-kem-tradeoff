@@ -1,0 +1,17 @@
+# DAWN decryption-failure analysis — restricted reconstruction
+
+The Phase 2A transcription suggests that after reversing rounding and multiplying by `tf`, the effective integer noise is of the shape
+
+`z = t*(g*s + f*(e+e_round)) + u*f*m`, with `u=t*w^{-1}=y²-y³` in the big ring.
+
+This expression follows formally from `h*f=g (mod q)` and an encryption contribution `w^{-1}m`, **subject to** the choice of center lifts and the exact definition/sign of `e_round`. The accessible transcription instead displays a last term `w*f*m`; `u=w-2` in the `(t)` quotient and `u=w` in `(2,t)`, but the corresponding *integer noise* is not literally identical. Without the canonical source and code we do not resolve whether their `z` is a quotient representative, a distributionally equivalent shift, or a transcription issue.
+
+The variables `f,g,s,e,m` in the stated model use small/fixed-weight distributions; rounding error is a deterministic function of `h,s,e,m`. Neither coefficients within a fixed-weight vector nor different coefficients of negacyclic products are independent. The paper's Phase 2A-transcribed tail model applies a single-coefficient distribution and then a binomial expression for ≥2 problematic coefficients, and separately estimates an incorrect-correction-index event. Those are the **specific independence and event-model assumptions to verify**. Correctness conditioned on `f,g` can differ from an average over keys. We have not computed a per-key distribution or an upper tail for the 512 instances.
+
+An exact illustrative toy experiment in `experiments/toy_correlation.py` uses `n=8`, independent `g,s`, each with one +1 and one -1, and flags product coefficients of absolute value >1. Across all `56²=3136` pairs, the marginal exceedance is `3/112`; the observed probability of at least two exceeds is **0**, whereas an i.i.d. binomial calculation gives **0.01804193**. This proves that fixed-weight negacyclic products can violate an independence extrapolation, but it is **not** evidence that DAWN's actual DFR is higher or lower. It omits DAWN's remaining terms, thresholds and decoder.
+
+Ordinary Monte Carlo cannot validate `2^-133` or `2^-130`: even `10^9` trials with zero observed failures only provide a rough 95% upper bound on the order of `3·10^-9`, many orders of magnitude too weak. An exact conditional analysis, rigorous tail bound or validated rare-event estimator is needed. The published exponents remain **unverified attributed claims**, with per-key and adversarial-input DFR still open.
+
+For a transcription of the QROM theorem, the apparent bound has the shape `Adv_CCA <= 2Q*Adv_CPA + 2Q/sqrt(|M|) + 4Q*sqrt(delta)`; parsing of the rendered formula is ambiguous. **Do not use that as the exact canonical theorem.** If the failure term really is `4Q sqrt(delta)`, substitution gives `4Q·2^-66.5` for α (`delta=2^-133`) and `4Q·2^-65` for β (`delta=2^-130`). The number and type of hash and decapsulation queries, factors and CPA terms require the official theorem. These arithmetic substitutions alone do not establish 128-bit CCA security.
+
+Adversarial inputs are a separate task: malformed encodings should be rejected canonically; decapsulation's correction branch, comparison, memory access and fault response need timing/fault testing. A chosen ciphertext may have a high raw decoder failure rate without exposing the failure if the FO check and implicit rejection are implemented correctly. No attack signal was measured here.

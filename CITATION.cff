@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Please cite the report identified in preferred-citation."
+title: "The Compact Post-Quantum KEM Trade-Off"
+authors:
+  - family-names: Kaya
+    given-names: Yusuf
+  - family-names: Moser
+    given-names: Jan
+date-released: 2026-09-27
+version: "1.0"
+repository-code: "https://github.com/kasumigaokasama/compact-pq-kem-tradeoff"
+url: "https://github.com/kasumigaokasama/compact-pq-kem-tradeoff"
+license: Apache-2.0
+preferred-citation:
+  type: report
+  title: "The Compact Post-Quantum KEM Trade-Off: A Falsification-Led Investigation of Compactness, Security, Correctness and Maturity in Post-Quantum Key Encapsulation"
+  authors:
+    - family-names: Kaya
+      given-names: Yusuf
+    - family-names: Moser
+      given-names: Jan
+  institution:
+    name: Independent Research Project
+  year: 2026
+  date-released: 2026-09-27
+  url: "https://github.com/kasumigaokasama/compact-pq-kem-tradeoff"

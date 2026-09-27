@@ -1,0 +1,2 @@
+# Numerical DFR models only; other research scripts use the standard library.
+numpy==2.3.5

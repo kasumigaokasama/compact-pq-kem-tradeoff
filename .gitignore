@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+.env
+.env.*
+credentials*
+tmp/
+build/
+# The final paper PDF is intentionally tracked.

@@ -1,0 +1,23 @@
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{pdflscape}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{fvextra}
+\fvset{breaklines=true,fontsize=\small}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily The Compact Post-Quantum KEM Trade-Off}
+\fancyhead[R]{\footnotesize\sffamily Kaya / Moser}
+\fancyfoot[C]{\small\thepage}
+\setlength{\headheight}{14pt}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\emergencystretch}{3em}
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
+\pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
+\AtBeginDocument{\hypersetup{hidelinks,pdftitle={The Compact Post-Quantum KEM Trade-Off},pdfauthor={Yusuf Kaya; Jan Moser},pdfsubject={A falsification-led investigation of compact post-quantum key encapsulation},pdfkeywords={post-quantum cryptography, KEM, ML-KEM, NTRU, HQC, BIKE, isogenies, quantum cryptanalysis},pdfcreator={XeLaTeX / Pandoc},pdfinfo={Repository={https://github.com/kasumigaokasama/compact-pq-kem-tradeoff}}}}
